@@ -57,11 +57,9 @@ A continuación se muestra un ejemplo de uso de las funciones definidas para cal
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Definir la función a integrar
 def func(x):
     return x**6 - x**2 * np.sin(2*x)
 
-# Definir la función de cuadratura
 def gaussxw(N):
     a = np.linspace(3, 4 * (N - 1), N) / ((4 * N) + 2)
     x = np.cos(np.pi * a + 1 / (8 * N * N * np.tan(a)))
@@ -87,7 +85,6 @@ def gaussxwab(a, b, x, w):
 def integrar(function, wk, xk):
     return np.sum(wk * function(xk))
 
-# Calcular la integral para N = 4
 val = gaussxw(4)
 val_escal = gaussxwab(1, 3, val[0], val[1])
 val_int = integrar(func, val_escal[1], val_escal[0])
