@@ -678,10 +678,8 @@ f(x) = x^6 - x^2 \sin(2x)
 <p>```python
 import matplotlib.pyplot as plt
 import numpy as np</p>
-<h1 id="definir-la-funcion-a-integrar">Definir la función a integrar</h1>
 <p>def func(x):
     return x<strong>6 - x</strong>2 * np.sin(2*x)</p>
-<h1 id="definir-la-funcion-de-cuadratura">Definir la función de cuadratura</h1>
 <p>def gaussxw(N):
     a = np.linspace(3, 4 * (N - 1), N) / ((4 * N) + 2)
     x = np.cos(np.pi * a + 1 / (8 * N * N * np.tan(a)))</p>
@@ -704,7 +702,6 @@ return x, w
     return 0.5 * (b - a) * x + 0.5 * (b + a), 0.5 * (b - a) * w</p>
 <p>def integrar(function, wk, xk):
     return np.sum(wk * function(xk))</p>
-<h1 id="calcular-la-integral-para-n-4">Calcular la integral para N = 4</h1>
 <p>val = gaussxw(4)
 val_escal = gaussxwab(1, 3, val[0], val[1])
 val_int = integrar(func, val_escal[1], val_escal[0])</p>

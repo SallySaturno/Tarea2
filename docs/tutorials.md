@@ -54,6 +54,7 @@ Esta función calcula la integral numérica de una función utilizando la cuadra
 A continuación se muestra un ejemplo de uso de las funciones definidas para calcular la integral de la función `f(x) = x^6 - x^2 sin(2x)` en el intervalo [1, 3].
 
 ```python
+
 import matplotlib.pyplot as plt
 import numpy as np
 
