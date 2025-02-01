@@ -34,12 +34,6 @@ def gaussxw(N):
     w = 2 * (N + 1) * (N + 1) / (N * N * (1 - x * x) * dp * dp)
     return x, w
 
-# Ejemplo de uso de gaussxw
-N = 4
-x, w = gaussxw(N)
-print(f"Puntos de muestreo (x) para N={N}: {x}")
-print(f"Pesos (w) para N={N}: {w}")
-
 def gaussxwab(a, b, x, w):
     """Escala los puntos y pesos de Gauss-Legendre a un intervalo arbitrario [a, b].
 
@@ -58,11 +52,6 @@ def gaussxwab(a, b, x, w):
 
     """
     return 0.5 * (b - a) * x + 0.5 * (b + a), 0.5 * (b - a) * w
-
-# Ejemplo de uso de gaussxwab
-x_scaled, w_scaled = gaussxwab(1, 3, x, w)
-print(f"Puntos escalados a [1,3]: {x_scaled}")
-print(f"Pesos escalados a [1,3]: {w_scaled}")
 
 def func(x):
     """Define la función a integrar.
@@ -97,10 +86,6 @@ def integrar(function, wk, xk):
 
     """
     return np.sum(wk * function(xk))
-
-# Ejemplo de uso de integrar
-valor_integral = integrar(func, w_scaled, x_scaled)
-print(f"Valor aproximado de la integral: {valor_integral}")
 
 val_real = 317.34424667382635
 i = 1
