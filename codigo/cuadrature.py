@@ -2,14 +2,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def gaussxw(N):
-    """
-    Calcula los puntos y pesos de Gauss-Legendre para la integración numérica.
+    """Calcula los puntos y pesos de Gauss-Legendre para la integración numérica.
 
-    Parameters:
-    N (int): Número de puntos de muestreo.
+    Args:
+      N (int): Número de puntos de muestreo.
 
     Returns:
-    tuple: Arrays de puntos de muestreo (x) y pesos (w).
+      tuple: Arrays de puntos de muestreo (x) y pesos (w).
+
+    Examples:
+        >>> gaussxw(4)
+        (array([-0.86113631, -0.33998104,  0.33998104,  0.86113631]),
+         array([0.34785485, 0.65214515, 0.65214515, 0.34785485]))
+
     """
     a = np.linspace(3, 4 * (N - 1), N) / ((4 * N) + 2)
     x = np.cos(np.pi * a + 1 / (8 * N * N * np.tan(a)))
@@ -29,46 +34,73 @@ def gaussxw(N):
     w = 2 * (N + 1) * (N + 1) / (N * N * (1 - x * x) * dp * dp)
     return x, w
 
-def gaussxwab(a, b, x, w):
-    """
-    Escala los puntos y pesos de Gauss-Legendre a un intervalo arbitrario [a, b].
+# Ejemplo de uso de gaussxw
+N = 4
+x, w = gaussxw(N)
+print(f"Puntos de muestreo (x) para N={N}: {x}")
+print(f"Pesos (w) para N={N}: {w}")
 
-    Parameters:
-    a (float): Límite inferior del intervalo.
-    b (float): Límite superior del intervalo.
-    x (array): Puntos de muestreo de Gauss-Legendre.
-    w (array): Pesos de Gauss-Legendre.
+def gaussxwab(a, b, x, w):
+    """Escala los puntos y pesos de Gauss-Legendre a un intervalo arbitrario [a, b].
+
+    Args:
+        a (float): Límite inferior del intervalo.
+        b (float): Límite superior del intervalo.
+        x (array): Puntos de muestreo de Gauss-Legendre.
+        w (array): Pesos de Gauss-Legendre.
 
     Returns:
-    tuple: Arrays de puntos escalados y pesos escalados.
+        tuple: Arrays de puntos escalados y pesos escalados.
+
+    Examples:
+        >>> gaussxwab(1, 3, np.array([-0.86113631, 0.86113631]), np.array([0.34785485, 0.34785485]))
+        (array([1.13886369, 2.86113631]), array([0.34785485, 0.34785485]))
+
     """
     return 0.5 * (b - a) * x + 0.5 * (b + a), 0.5 * (b - a) * w
 
-def func(x):
-    """
-    Define la función a integrar.
+# Ejemplo de uso de gaussxwab
+x_scaled, w_scaled = gaussxwab(1, 3, x, w)
+print(f"Puntos escalados a [1,3]: {x_scaled}")
+print(f"Pesos escalados a [1,3]: {w_scaled}")
 
-    Parameters:
-    x (float or array): Variable independiente.
+def func(x):
+    """Define la función a integrar.
+
+    Args:
+        x (float or array): Variable independiente.
 
     Returns:
-    float or array: Valor de la función evaluada en x.
+        float or array: Valor de la función evaluada en x.
+
+    Examples:
+        >>> func(2)
+        62.93532456758002
+
     """
     return x**6 - x**2 * np.sin(2*x)
 
 def integrar(function, wk, xk):
-    """
-    Calcula la integral numérica usando la cuadratura de Gauss-Legendre.
+    """Calcula la integral numérica usando la cuadratura de Gauss-Legendre.
 
-    Parameters:
-    function (callable): Función a integrar.
-    wk (array): Pesos de Gauss-Legendre.
-    xk (array): Puntos de muestreo de Gauss-Legendre.
+    Args:
+        function (callable): Función a integrar.
+        wk (array): Pesos de Gauss-Legendre.
+        xk (array): Puntos de muestreo de Gauss-Legendre.
 
     Returns:
-    float: Valor aproximado de la integral.
+        float: Valor aproximado de la integral.
+
+    Examples:
+        >>> integrar(func, np.array([0.34785485, 0.65214515]), np.array([-0.86113631, 0.33998104]))
+        49.57684923659359
+
     """
     return np.sum(wk * function(xk))
+
+# Ejemplo de uso de integrar
+valor_integral = integrar(func, w_scaled, x_scaled)
+print(f"Valor aproximado de la integral: {valor_integral}")
 
 val_real = 317.34424667382635
 i = 1

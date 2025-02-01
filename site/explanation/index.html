@@ -465,31 +465,31 @@
 \]</div>
 <p>donde:</p>
 <ul>
-<li>$ w_k $ son los "pesos".</li>
-<li>$ x_k $ son los puntos de muestreo. Se usan $ N+1 $ puntos (es decir, $ N $ subregiones o subintervalos).</li>
+<li><span class="arithmatex">\(w_k\)</span> son los "pesos".</li>
+<li><span class="arithmatex">\(x_k\)</span> son los puntos de muestreo. Se usan $ N+1 $ puntos (es decir, $ N $ subregiones o subintervalos).</li>
 </ul>
 <h3 id="comparacion-con-el-metodo-de-newton-cotes">Comparación con el Método de Newton-Cotes</h3>
 <p>En el método de Newton-Cotes:</p>
 <ul>
 <li>Los puntos de muestreo son <strong>equidistantes</strong>.</li>
-<li>Una ecuación de Newton-Cotes de orden $ N $ es <em>exacta</em> para un polinomio de grado $ N $.</li>
-<li>Un polinomio de orden $ N $ aproxima mejor una función bien comportada que un polinomio de orden $ N-1 $.</li>
+<li>Una ecuación de Newton-Cotes de orden <span class="arithmatex">\( N \)</span> es <em>exacta</em> para un polinomio de grado <span class="arithmatex">\( N \)</span>.</li>
+<li>Un polinomio de orden <span class="arithmatex">\( N \)</span> aproxima mejor una función bien comportada que un polinomio de orden <span class="arithmatex">\( N-1 \)</span>.</li>
 </ul>
 <p>Por el contrario, en la <strong>cuadratura Gaussiana</strong>:</p>
 <ul>
-<li>Los puntos de muestreo <strong>no son equidistantes</strong>, lo que introduce más grados de libertad para la misma discretización en $ N $ subregiones.</li>
-<li>Es exacta para un polinomio de orden $ 2N - 1 $, lo que significa que proporciona la misma precisión que un polinomio de orden $ 2N - 1 $ en Newton-Cotes.</li>
+<li>Los puntos de muestreo <strong>no son equidistantes</strong>, lo que introduce más grados de libertad para la misma discretización en <span class="arithmatex">\( N \)</span> subregiones.</li>
+<li>Es exacta para un polinomio de orden <span class="arithmatex">\( 2N - 1 \)</span>, lo que significa que proporciona la misma precisión que un polinomio de orden <span class="arithmatex">\( 2N - 1 \)</span> en Newton-Cotes.</li>
 </ul>
 <h3 id="eleccion-de-pesos-y-puntos-de-muestreo">Elección de Pesos y Puntos de Muestreo</h3>
-<p>Existe una <strong>regla universal</strong> para elegir los valores de $ x_k $ y $ w_k $:</p>
+<p>Existe una <strong>regla universal</strong> para elegir los valores de <span class="arithmatex">\( x_k \)</span> y <span class="arithmatex">\( w_k \)</span>:</p>
 <ul>
-<li>$ x_k $ corresponden a las $ N $ raíces (ceros) de los polinomios de Legendre $ P_N(x) $ de orden $ N $.</li>
-<li>Los pesos $ w_k $ se calculan como:</li>
+<li><span class="arithmatex">\( x_k \)</span> corresponden a las <span class="arithmatex">\( N \)</span> raíces (ceros) de los polinomios de Legendre <span class="arithmatex">\( P_N(x) \)</span> de orden <span class="arithmatex">\( N \)</span>.</li>
+<li>Los pesos <span class="arithmatex">\( w_k \)</span> se calculan como:</li>
 </ul>
 <div class="arithmatex">\[
 w_k = \left[\frac{2}{1-x^2}\left(\frac{dP_N}{dx}\right)^{-2}\right]_{x={x_k}},
 \]</div>
-<p>donde $ x_k $ son los ceros de $ P_N(x) $.</p>
+<p>donde <span class="arithmatex">\( x_k \)</span> son los ceros de <span class="arithmatex">\( P_N(x) \)</span>.</p>
 <h3 id="pros-y-contras-de-la-cuadratura-gaussiana">Pros y Contras de la Cuadratura Gaussiana</h3>
 <h4 id="pros">Pros:</h4>
 <ul>
